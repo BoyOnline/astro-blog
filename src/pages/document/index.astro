@@ -10,7 +10,7 @@ const page = Number(Astro.url.searchParams.get("page")) || 1;
 const limit = Number(Astro.url.searchParams.get("limit")) || 12;
 
 // 请求
-const response = await fetch("http://localhost:8000/api/article", {
+const response = await fetch("http://punkboy.xyz:4320/api/article", {
   method: "POST",
   body: JSON.stringify({
     page,

@@ -94,7 +94,7 @@ const handleFocusDirection = (digit: number, e: KeyboardEvent) => {
 };
 
 const verifcationPassword = async (password: string) => {
-  const res = await fetch("http://localhost:8000/api/timeline/verifcation", {
+  const res = await fetch("http://punkboy.xyz:4320/api/timeline/verifcation", {
     method: "GET",
     headers: {
       Authorization: password,

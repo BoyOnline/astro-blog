@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/node": "5.3.6",
     "@astrojs/tailwind": "^4.0.0",
-    "@astrojs/vercel": "^5.0.1",
+    "@astrojs/vercel": "^4.0.5",
     "@astrojs/vue": "^2.2.1",
     "astro": "^2.10.9",
     "dayjs": "^1.11.9",
