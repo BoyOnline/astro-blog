@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/NavBarLayout.astro";
+import BigArticle from "./_components/BigArticle.vue";
+import Article from "./_components/Article.vue";
+import Pagination from "../../components/Pagination/index.vue";
+import type { BasicData, List, ArticleItem } from "../../typings/document";
+
+// query参数
+const page = Number(Astro.url.searchParams.get("page")) || 1;
+const limit = Number(Astro.url.searchParams.get("limit")) || 12;
+
+// 请求
+const response = await fetch("http://localhost:8000/api/article", {
+  method: "POST",
+  body: JSON.stringify({
+    page,
+    limit,
+  }),
+});
+const resData: BasicData<List<ArticleItem>> = await response.json();
+---
+
+<Layout title="文章" page="document">
+  <div class="max-w-6xl mx-auto py-10">
+    <h1 class="text-6xl font-bold tracking-wider pb-10">文章</h1>
+    {page === 1 && <BigArticle data={resData.data.list[0]} />}
+    <div class="grid grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-12">
+      {
+        page === 1
+          ? resData.data.list.slice(1).map((item) => <Article data={item} />)
+          : resData.data.list.map((item) => <Article data={item} />)
+      }
+    </div>
+    <Pagination
+      client:load
+      page-total={Math.ceil(resData.data.total / limit)}
+      current={page}
+    />
+  </div>
+</Layout>
+
+<script></script>

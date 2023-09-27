@@ -1,0 +1,187 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Steps from "../../components/Steps/index.astro";
+import CodeInput from "../../components/CodeInput/index.vue";
+import type { StepOption } from "../../components/Steps/index.astro";
+
+const socialPlatforms = [
+  {
+    name: "Email",
+    icon: "/icons/IcOutlineEmail.svg",
+    url: "mailto:dangyuze219@gmail.com",
+    detail: "Dangyuze219@gmail.com",
+  },
+  {
+    name: "Bilibili",
+    icon: "/icons/RiBilibiliFill.svg",
+    url: "https://space.bilibili.com/84095044",
+  },
+  {
+    name: "Spotify",
+    icon: "/icons/LogosSpotifyIcon.svg",
+    url: "https://open.spotify.com/user/6vcb3aa2z7joqsrk7345vjmpa",
+  },
+];
+
+const tempObj: StepOption[] = [
+  {
+    title: "title-示例",
+    subtitle: "subtitle-示例",
+  },
+  {
+    title:
+      "title-示例, title-示例, title-示例, title-示例, title-示例, title-示例",
+    subtitle:
+      "subtitle-示例, subtitle-示例, subtitle-示例, subtitle-示例, subtitle-示例, subtitle-示例, subtitle-示例, subtitle-示例",
+  },
+  {
+    title: "title-示例",
+    subtitle: "subtitle-示例",
+  },
+];
+---
+
+<Layout title="名片">
+  <div
+    class="w-screen h-screen text-black bg-gradient-to-tr from-green-400 to-blue-500 overflow-hidden"
+  >
+    <div class="w-2/3 flex m-auto mt-20">
+      <div class="w-32 flex flex-col flex-shrink-0">
+        <!-- 个人信息 -->
+        <div
+          class="w-full flex flex-col justify-center items-center backdrop-blur-[3px] rounded-md py-4 shadow-md"
+          style="background:rgba(255,255,255,0.35)"
+        >
+          <div class="w-14 h-14 relative">
+            <img
+              class="w-full h-full rounded-full"
+              src="https://punkboy.xyz:8077/?explorer/share/file&hash=8d4dVbfdDSXzQtXaBD5dcziIJ40tgobRKEI3I4VWhrKwkkBFsutwJPulEk6CnHqLJw"
+              alt="avatar"
+            />
+            <img
+              class="w-6 h-6 absolute top-[-6px] right-[-6px]"
+              src="/icons/PhGenderMaleBold.svg"
+              alt="gender-icon"
+            />
+          </div>
+
+          <p class="mt-4 text-base">BoyOnline</p>
+
+          <p class="mt-1 text-sm">前端工程师</p>
+        </div>
+        <!-- 社交平台 -->
+        <div
+          class="w-full flex flex-col items-center backdrop-blur-[3px] rounded-md mt-6 py-4 shadow-md"
+          style="background:rgba(255,255,255,0.35)"
+        >
+          {
+            socialPlatforms.map(({ name, icon, url }) => (
+              <a
+                class="flex items-center mt-4 text-black first:mt-0"
+                href={url}
+              >
+                <div class="w-10 h-10 grid place-content-center flex-shrink-0 bg-white rounded-full">
+                  <img class="w-6 h-6" src={icon} alt={name} />
+                </div>
+                <p class="w-14 ml-2 truncate">{name}</p>
+              </a>
+            ))
+          }
+        </div>
+        <!-- 功能模块 -->
+        <div
+          class="w-full flex flex-col items-center backdrop-blur-[3px] rounded-md mt-6 py-4 shadow-md"
+          style="background:rgba(255,255,255,0.35)"
+        >
+          <a
+            id="login"
+            class="flex items-center mt-4 text-black first:mt-0"
+            href="/"
+          >
+            <div
+              class="w-10 h-10 grid place-content-center flex-shrink-0 bg-white rounded-full"
+            >
+              <img
+                class="w-6 h-6"
+                src="/icons/PhFingerprintDuotone.svg"
+                alt="back"
+              />
+            </div>
+            <p class="w-12 ml-2 truncate">登录</p>
+          </a>
+          <a
+            id="navigator-home"
+            class="flex items-center mt-4 text-black first:mt-0"
+            href="/"
+          >
+            <div
+              class="w-10 h-10 grid place-content-center flex-shrink-0 bg-white rounded-full"
+            >
+              <img class="w-6 h-6" src="/icons/IcOutlineHome.svg" alt="back" />
+            </div>
+            <p class="w-12 ml-2 truncate">首页</p>
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col flex-grow ml-6">
+        <!-- 介绍 -->
+        <div
+          class="flex flex-col backdrop-blur-[3px] rounded-md p-4 shadow-md"
+          style="background:rgba(255,255,255,0.35)"
+        >
+          <div>
+            <h3 class="font-bold text-lg">基本信息</h3>
+            <p>兴趣: 游戏、音乐、编程、福瑞?;</p>
+            <p>
+              个性: INFP、偏内向、偏急性、傲娇、 <span class="line-through"
+                >已隐藏</span
+              >;
+            </p>
+          </div>
+        </div>
+        <!-- <div
+          class="flex flex-col backdrop-blur-[3px] rounded-md mt-6 p-4"
+          style="background:rgba(255,255,255,0.35)"
+        >
+          <h3 class="font-bold text-lg">目标:</h3>
+          <Steps stepOptions={tempObj} tag="number" status="wait" />
+        </div> -->
+        <div
+          class="min-h-[320px] flex flex-col backdrop-blur-[3px] rounded-md mt-6 p-4 shadow-md"
+          style="background:rgba(255,255,255,0.35)"
+        >
+          {
+            true && (
+              <div class="w-full h-full flex flex-col justify-center items-center">
+                <CodeInput client:load />
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // 功能-导航-首页
+  {
+    const historyLength = window.history.length;
+
+    const homeLink = document.querySelector(
+      "#navigator-home"
+    ) as HTMLLinkElement;
+    const homeLinkOfIcon = homeLink.querySelector("img") as HTMLImageElement;
+    const homeLinkOfText = homeLink.querySelector("p") as HTMLParagraphElement;
+
+    if (historyLength <= 1) {
+      homeLink.href = "/";
+      homeLinkOfIcon.src = "/icons/IcOutlineHome.svg";
+      homeLinkOfText.innerText = "首页";
+    } else {
+      homeLink.href = "javascript:history.back(-1)";
+      homeLinkOfIcon.src = "/icons/IcBaselineArrowBack.svg";
+      homeLinkOfText.innerText = "返回";
+    }
+  }
+</script>

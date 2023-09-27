@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/NavBarLayout.astro";
+import MarkdownPreview from "../../components/Markdown/index.vue";
+const { id } = Astro.params;
+
+// 请求
+const response = await fetch(`http://localhost:8000/api/article/${id}`, {
+  method: "GET",
+});
+const responseStatus = response.status;
+const resData = await response.json();
+
+if (responseStatus === 404) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
+}
+---
+
+<Layout title={resData.data.info.title} page="document">
+  <div class="max-w-6xl mx-auto py-10">
+    <h1 id="title" class="text-3xl font-bold">{resData.data.info.title}</h1>
+    <div class="mt-10">
+      <MarkdownPreview client:load content={resData.data.content} />
+    </div>
+  </div>
+</Layout>

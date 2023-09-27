@@ -1,0 +1,38 @@
+---
+export interface StepOption {
+  title: string;
+  subtitle: string;
+}
+
+interface Props {
+  tag: "number" | "letter";
+  // current: number;
+  status: "error" | "process" | "wait" | "finish";
+  stepOptions: StepOption[];
+}
+
+const { status, stepOptions } = Astro.props;
+---
+
+<div class="flex">
+  {
+    stepOptions.map(({ title, subtitle }) => (
+      <div class="flex ml-4 first:ml-0">
+        <div
+          class="w-8 h-8 grid place-content-center flex-shrink-0 rounded-full border-[2px] box-border"
+          style={`border-color:${
+            status === "error"
+              ? "#e88080"
+              : status === "process"
+              ? "#63e2b7"
+              : "rgba(255, 255, 255, 0.38)"
+          }`}
+        />
+        <div class="max-w-xs ml-2 mt-1">
+          <div class="text-base truncate">{title}</div>
+          <p class="text-sm">{subtitle}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

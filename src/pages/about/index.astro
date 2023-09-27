@@ -1,0 +1,105 @@
+---
+import Layout from "../../layouts/NavBarLayout.astro";
+
+const webFrontend = [
+  {
+    name: "Typescript",
+    icon: "/icons/DeviconTypescript.svg",
+    bgColor: undefined,
+  },
+  {
+    name: "Astro (SSR)",
+    icon: "/favicon.svg",
+    bgColor: "#000",
+  },
+  {
+    name: "Vue",
+    icon: "/icons/vue.svg",
+    bgColor: undefined,
+  },
+  {
+    name: "Tailwind CSS",
+    icon: "/icons/DeviconTailwindcss.svg",
+    bgColor: undefined,
+  },
+];
+
+const webBackend = [
+  {
+    name: "Go",
+    icon: "/icons/Fa6BrandsGolang.svg",
+  },
+  {
+    name: "Gin",
+    icon: "/icons/gin.svg",
+    bgColor: undefined,
+  },
+  {
+    name: "Gorm",
+    icon: "/icons/gorm.svg",
+    bgColor: "#000",
+  },
+];
+---
+
+<Layout title="关于" page="about">
+  <div class="max-w-6xl h-full flex flex-col mx-auto overflow-hidden">
+    <div class="mt-10">
+      <h1>关于</h1>
+      <p class="mt-6">
+        <span class="font-bold">开发这个网站的目的:</span>
+         1、学习Go并通过它来实现后端服务; 2、学习前端SSR (服务器渲染);
+        3、通过这个网站来记录我生活遇到的一些事情或者我个人的某些想法,
+        甚至在这里记录在我开发过程中遇到的一些问题. <br /><br /><span
+          class="font-bold">后续开发/发展:</span
+        >
+         对我来说文章模块能够短暂实现我的目的了,
+        后续会继续针对文章模块实现评论、文章目录等; 其它模块 (如首页、项目)
+        以后有时间和想法可能会完善它们.
+      </p>
+    </div>
+    <div class="mt-20 self-start">
+      <h2>前端</h2>
+      <div class="flex items-start mt-5 -mx-5">
+        {
+          webFrontend.map(({ name, icon, bgColor }) => (
+            <div class="flex items-center mx-5">
+              <div class="w-28 flex flex-col items-center">
+                <div
+                  class="w-full h-28 flex justify-center items-center rounded-full"
+                  style={`background-color: ${bgColor || "transparent"};`}
+                >
+                  <img class="w-3/4 h-3/4" src={icon} alt="astro-logo" />
+                </div>
+                <p class="mt-5">{name}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="self-end mt-10">
+      <h2 class="text-end">后端</h2>
+      <div class="flex items-start mt-5 -mx-5">
+        {
+          webBackend.map(({ name, icon, bgColor }) => (
+            <div class="flex items-center mx-5">
+              <div class="w-28 flex flex-col items-center">
+                <div
+                  class="w-full h-28 flex justify-center items-center rounded-full"
+                  style={`background-color: ${bgColor || "transparent"};`}
+                >
+                  <img class="w-3/4 h-3/4" src={icon} alt="astro-logo" />
+                </div>
+                <p class="mt-5">{name}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <p class="mt-10 text-sm">
+      阿巴阿巴... 脑子不够用了, 要思考页面如何布局又要思考程序如何开发.
+    </p>
+  </div>
+</Layout>
